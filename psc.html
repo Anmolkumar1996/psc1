@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+#counter {
+    margin: 20px;
+    text-align: right;
+}
+</style>
+<body>
+    <div id="show" >
+        <button id="dashboard">Dashboard</button>
+    </div>
+    <div id="counter">0</div>
+    <div id="details">
+    <h1>Add Details</h1>
+
+    <form id="form">
+        <input type="text" placeholder="Name" id="name">
+        <input type="text" placeholder="Course" id="course">
+        <select id="unit">
+            <option value="">Unit</option>
+            <option value="Unit 1">Unit 1</option>
+            <option value="Unit 2">Unit 2</option>
+            <option value="Unit 3">Unit 3</option>
+            <option value="unit4">unit 4</option>
+        </select>
+        <input type="url" placeholder="Image" id="image">
+        <select id="batch">
+            <option value="">Batch</option>
+            <option value="Web 15">Web 15</option>
+            <option value="Web 16">Web 16</option>
+            <option value="Web 17">Web 17</option>
+        </select>
+        <input type="submit" id="submit">
+        
+    </form>
+</div>
+</body>
+</html>
+<!-- <script src="./script/index.js"></script> -->
+<script>
+   document.getElementById("submit").addEventListener("click", add)
+
+var array = JSON.parse(localStorage.getItem("students")) || [];
+
+function add(event){
+    event.preventDefault()
+    var name = document.getElementById("name").value;
+    var course = document.getElementById("course").value;
+    var unit = document.getElementById("unit").value;
+    var image = document.getElementById("image").value;
+    var batch = document.getElementById("batch").value;
+
+    var obj = {
+        name: name,
+        course: course,
+        unit: unit,
+        image: image,
+        batch: batch,
+    }
+    array.push(obj)
+    localStorage.setItem("students", JSON.stringify(array))
+
+}
+
+document.getElementById("dashboard").addEventListener("click", function(){
+    window.location.href = "./dashboard.html"
+})
+</script>
